@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @Getter
 @Setter
@@ -32,11 +34,18 @@ public class MockBookService implements BookService{
 
     }
 
-    public void getBook(){}
-
     @Override
     public void add(Book book) {
         book.setId(nextId++);
         books.add(book);
     }
+
+    @Override
+    public Optional<Book> get(Long id) {
+        return books
+                .stream()
+                .filter(item -> item.getId().equals(id))
+                .findFirst();
+    }
+
 }
