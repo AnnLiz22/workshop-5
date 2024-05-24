@@ -18,7 +18,6 @@ public class BookController {
         this.bookService = bookService;
     }
 
-
     @RequestMapping("/helloBook")
     public Book helloBook() {
         return new Book(1L, "9788324631766", "Thinking in Java",
@@ -44,6 +43,12 @@ public class BookController {
             );
         });
     }
+
+    @DeleteMapping("/{id}")
+    public void removeBook(@PathVariable Long id) {
+        bookService.delete(id);
+    }
+
 
 
 }
