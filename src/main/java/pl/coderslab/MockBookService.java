@@ -30,10 +30,6 @@ public class MockBookService implements BookService{
 
     }
 
-    public void deleteBook(){
-
-    }
-
     @Override
     public void add(Book book) {
         book.setId(nextId++);
@@ -47,5 +43,13 @@ public class MockBookService implements BookService{
                 .filter(item -> item.getId().equals(id))
                 .findFirst();
     }
+
+    @Override
+    public void delete(Long id) {
+        if (get(id).isPresent()) {
+            books.remove(this.get(id).get());
+        }
+    }
+
 
 }
