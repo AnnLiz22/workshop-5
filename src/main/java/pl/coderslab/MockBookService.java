@@ -22,11 +22,6 @@ public class MockBookService implements BookService{
                 "programming"));
     }
 
-
-    public void addBook(){
-
-    }
-
     public void editBook(){
 
     }
@@ -36,4 +31,9 @@ public class MockBookService implements BookService{
     }
 
     public void getBook(){}
+
+    @Override
+    public void add(Book book) {
+
+    }
 }
