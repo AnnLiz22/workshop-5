@@ -12,12 +12,11 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private BookService bookService;
+    private final BookService bookService;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
-
 
     @RequestMapping("/helloBook")
     public Book helloBook() {
@@ -45,5 +44,15 @@ public class BookController {
         });
     }
 
+    @DeleteMapping("/{id}")
+    public void removeBook(@PathVariable Long id) {
+        bookService.delete(id);
+    }
+
+    @PutMapping("")
+    @ResponseBody
+    public void updateBook(@RequestBody Book book) {
+        bookService.update(book);
+    }
 
 }
