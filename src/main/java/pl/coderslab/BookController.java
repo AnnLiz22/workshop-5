@@ -1,7 +1,9 @@
 package pl.coderslab;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,8 +27,7 @@ public class BookController {
 
     @GetMapping("")
     @ResponseBody
-    public
-    List<Book> getList() {
+    public List<Book> getList() {
         return bookService.getBooks();
     }
 
@@ -35,6 +36,14 @@ public class BookController {
         bookService.add(book);
     }
 
+    @GetMapping("/{id}")
+    public Book getBook(@PathVariable Long id) {
+        return this.bookService.get(id).orElseThrow(() -> {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        });
+    }
 
 
 }
