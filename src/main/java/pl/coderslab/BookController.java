@@ -11,10 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/books")
 public class BookController {
+    private final MockBookService bookService;
 
-    private final BookService bookService;
-
-    public BookController(BookService bookService) {
+    public BookController(MockBookService bookService) {
         this.bookService = bookService;
     }
 
@@ -25,7 +24,6 @@ public class BookController {
     }
 
     @GetMapping("")
-    @ResponseBody
     public List<Book> getList() {
         return bookService.getBooks();
     }
@@ -50,7 +48,6 @@ public class BookController {
     }
 
     @PutMapping("")
-    @ResponseBody
     public void updateBook(@RequestBody Book book) {
         bookService.update(book);
     }
