@@ -52,6 +52,12 @@ class BookServiceTest {
   }
 
   @Test
+  void shouldGetEmptyOptionalWhenBookNotAdded(){
+
+      assertThat(mockBookService.get(5L)).isEmpty();
+  }
+
+  @Test
   void shouldGetWithCorrectArgument() {
     mockBookService = mock(MockBookService.class);
     ArgumentCaptor<Long> idCaptor = ArgumentCaptor.forClass(Long.class);
