@@ -24,15 +24,14 @@ class BookServiceTest {
     @Test
     void shouldAddBook() {
         Book book = new Book();
-        MockBookService mockBookService1 = new MockBookService();
         book.setId(4L);
         book.setAuthor("Marek Krajewski");
         book.setTitle("Liczby Charona");
 
-        mockBookService1.add(book);
+        mockBookService.add(book);
 
         assertThat(book).isInstanceOf(Book.class);
-        assertThat(mockBookService1.get(4L)).isNotNull();
+        assertThat(mockBookService.get(4L)).isNotNull();
     }
 
     @Test
